@@ -17,7 +17,7 @@ class Ui_MainWindow:
     def setupUi(self, MainWindow):
         self.MainWindow=MainWindow
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(818, 617)
+        MainWindow.resize(1600, 800)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.graph_background = QtWidgets.QGraphicsView(self.centralwidget)
@@ -133,7 +133,7 @@ class Ui_MainWindow:
         self.snapshot_2.setObjectName("snapshot_2")
         self.tabs.addTab(self.channel_2, "")
         self.link_button = QtWidgets.QPushButton(self.centralwidget)
-        self.link_button.setGeometry(QtCore.QRect(690, 350, 111, 20))
+        self.link_button.setGeometry(QtCore.QRect(340, 350, 111, 25))
         self.link_button.setObjectName("link_button")
         self.line = QtWidgets.QFrame(self.centralwidget)
         self.line.setGeometry(QtCore.QRect(360, 0, 81, 351))
