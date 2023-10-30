@@ -159,8 +159,10 @@ class MplCanvas(FigureCanvas):
     def pause_or_paly(self):
         if(self.played):
             self.pause()
+            
         else:
             self.play()
+            
 
 
     def increase_speed(self):

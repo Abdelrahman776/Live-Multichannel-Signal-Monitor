@@ -1,24 +1,28 @@
 # Form implementation generated from reading ui file 'front.ui'
 # Created by: PyQt5 UI code generator 5.15.9
 # pyuic5
-from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
-from PyQt5.QtGui import QPixmap
+from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import *
+from PyQt5.QtGui import *
+from PyQt5.QtCore import *
 from MplGraph import MplCanvas
-from PyQt5.QtWidgets import QFileDialog, QVBoxLayout,QHBoxLayout,QColorDialog
-from PyQt5.QtGui import QColor
 import pandas as pd
 from custom_slider import CustomSlider
 from create_pdf import generate_pdf
 
 
-class Ui_MainWindow:
+class Ui_MainWindow(QMainWindow):
 
-    def setupUi(self, MainWindow):
-        self.MainWindow=MainWindow
-        MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1600, 800)
-        self.centralwidget = QtWidgets.QWidget(MainWindow)
+   
+    def __init__(self):
+        
+        """Initializer."""
+        super().__init__()
+        self.resize(1600, 800)
+        # setting icon to the window
+        self.setWindowIcon(QIcon('images/icon.png'))
+        self.centralwidget = QtWidgets.QWidget()
         self.centralwidget.setObjectName("centralwidget")
         self.graph_background = QtWidgets.QGraphicsView(self.centralwidget)
         self.graph_background.setGeometry(QtCore.QRect(0, 0, 801, 351))
@@ -41,6 +45,7 @@ class Ui_MainWindow:
         self.tabs.setObjectName("tabs")
         self.channel_1 = QtWidgets.QWidget()
         self.channel_1.setObjectName("channel_1")
+        self.isplayed=False
         self.pause_play_button_1 = QtWidgets.QPushButton(self.channel_1)
         self.pause_play_button_1.setGeometry(QtCore.QRect(290, 160, 211, 28))
         self.pause_play_button_1.setObjectName("pause_play_button_1")
@@ -229,31 +234,31 @@ class Ui_MainWindow:
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_2)
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
-        MainWindow.setCentralWidget(self.centralwidget)
-        self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        self.setCentralWidget(self.centralwidget)
+        self.statusbar = QtWidgets.QStatusBar()
         self.statusbar.setObjectName("statusbar")
-        MainWindow.setStatusBar(self.statusbar)
-        self.menubar = QtWidgets.QMenuBar(MainWindow)
+        self.setStatusBar(self.statusbar)
+        self.menubar = QtWidgets.QMenuBar()
         self.menubar.setGeometry(QtCore.QRect(0, 0, 818, 26))
         self.menubar.setObjectName("menubar")
         self.menuFile = QtWidgets.QMenu(self.menubar)
         self.menuFile.setObjectName("menuFile")
-        MainWindow.setMenuBar(self.menubar)
-        self.actionopen = QtWidgets.QAction(MainWindow)
+        self.setMenuBar(self.menubar)
+        self.actionopen = QtWidgets.QAction()
         self.actionopen.setObjectName("actionopen")
-        self.actionsave = QtWidgets.QAction(MainWindow)
+        self.actionsave = QtWidgets.QAction()
         self.actionsave.setObjectName("actionsave")
-        self.actionsave_as = QtWidgets.QAction(MainWindow)
+        self.actionsave_as = QtWidgets.QAction()
         self.actionsave_as.setObjectName("actionsave_as")
-        self.actionReport = QtWidgets.QAction(MainWindow)
+        self.actionReport = QtWidgets.QAction()
         self.actionReport.setObjectName("actionReport")
         self.menuFile.addAction(self.actionopen)
         self.menuFile.addAction(self.actionReport)
         self.menubar.addAction(self.menuFile.menuAction())
 
-        self.retranslateUi(MainWindow)
+        self.retranslateUi()
         self.tabs.setCurrentIndex(0)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        QtCore.QMetaObject.connectSlotsByName(self)
 
         #list of names of snapshots
         self.lst_snapshots_img=[]
@@ -262,8 +267,8 @@ class Ui_MainWindow:
         self.lst_snapshots_statistics=[]
 
         #create canvas to plot in it
-        self.canvas_1 = MplCanvas(self, width=6, height=6, dpi=100)
-        self.canvas_2 = MplCanvas(self, width=6, height=6, dpi=100)
+        self.canvas_1 = MplCanvas(self, width=16, height=16, dpi=100)
+        self.canvas_2 = MplCanvas(self, width=16, height=16, dpi=100)
         self.link_2_channels=False
 
         #current canvas
@@ -306,10 +311,7 @@ class Ui_MainWindow:
         self.zoom_out_1.clicked.connect(self.canvas_1.zoom_out)
         self.zoom_out_2.clicked.connect(self.canvas_2.zoom_out)
 
-        #pause and play button signal
-        self.pause_play_button_1.clicked.connect(self.canvas_1.pause_or_paly)
-        self.pause_play_button_2.clicked.connect(self.canvas_2.pause_or_paly)
-
+        
         #control speed
         self.speedUp_1.clicked.connect(self.canvas_1.increase_speed)
         self.speedDown_1.clicked.connect(self.canvas_1.decrease_speed)
@@ -361,9 +363,27 @@ class Ui_MainWindow:
         self.speedDisp_2.display(self.canvas_2.counter)
         self.speedUp_2.clicked.connect(self.increase_counter_2)
         self.speedDown_2.clicked.connect(self.decrease_counter_2)
+        #pause and play button signal
+        # self.pause_play_button_1.clicked.connect(self.toggle_playpause_icon1)
+        # self.pause_play_button_2.clicked.connect(self.toggle_playpause_icon2)
+        self.pause_play_button_1.clicked.connect(lambda:self.toggle_playpause_icon(self.canvas_1,self.pause_play_button_1,self.isplayed))
+        self.pause_play_button_2.clicked.connect(lambda:self.toggle_playpause_icon(self.canvas_2,self.pause_play_button_2,self.isplayed))
 
 
-    #Ui_MainWindow functions
+    #Ui_MainWindow functions------------------------------------------------------
+    def toggle_playpause_icon(self,canvas,btn,isplayed):
+            canvas.pause_or_paly()
+            isplayed=canvas.played
+            if isplayed:
+                btn.setIcon(QIcon("images/pause.ico"))
+                isplayed=False
+            else:
+                btn.setIcon(QIcon("images/play.ico"))       
+                isplayed=True
+
+
+            ######
+
     def change_current_tab(self,index):
         if index == 0:
             self.current_canvas=self.canvas_1
@@ -384,8 +404,8 @@ class Ui_MainWindow:
     
 
     def upload_csv(self):
-        file_dialog = QFileDialog()
-        file_path, _ = file_dialog.getOpenFileName(self.MainWindow, 'Open CSV File', '', 'CSV Files (*.csv)')
+         
+        file_path, _ = QFileDialog.getOpenFileName(None, 'Open CSV File', '', 'CSV Files (*.csv)')
         if file_path:
             df = pd.read_csv(file_path)
             self.current_canvas.upload_data(df)
@@ -489,15 +509,16 @@ class Ui_MainWindow:
         self.speedDisp_2.display(self.canvas_2.counter)
         
 
-    def retranslateUi(self, MainWindow):
+    def retranslateUi(self):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.pause_play_button_1.setText(_translate("MainWindow", "Pause/Play"))
-        self.hide_check_2.setText(_translate("MainWindow", "Hide / Show"))
-        self.zoom_in_1.setText(_translate("MainWindow", "Zoom In"))
-        self.zoom_out_1.setText(_translate("MainWindow", "Zoom Out"))
-        self.speed_label.setText(_translate("MainWindow", "Cine Speed"))
-        self.rewind_1.setText(_translate("MainWindow", "Rewind"))
+        self.setWindowTitle(_translate("", "Live-Multichannel-Signal-Monitor"))
+        self.pause_play_button_1.setIcon(QIcon("images/pause.ico"))
+        # setText(_translate("", "Pause/Play"))
+        self.hide_check_2.setText(_translate("", "Hide / Show"))
+        self.zoom_in_1.setIcon(QIcon("images/zoomin.png"))
+        self.zoom_out_1.setIcon(QIcon("images/zoomout.png"))
+        self.speed_label.setText(_translate("MainWindow", "Speed"))
+        self.rewind_1.setIcon(QIcon("images/rewind.png"))
         self.plot_box_1.setItemText(0, _translate("MainWindow", "Plot1"))
         self.colour_1.setText(_translate("MainWindow", "Colour"))
         self.shift_1.setText(_translate("MainWindow", "Shift plot"))
@@ -506,12 +527,12 @@ class Ui_MainWindow:
         self.speedDown_1.setText(_translate("MainWindow", "Speed-"))
         self.snapshot_1.setText(_translate("MainWindow", "Snapshot"))
         self.tabs.setTabText(self.tabs.indexOf(self.channel_1), _translate("MainWindow", "Channel 1"))
-        self.hide_check_1.setText(_translate("MainWindow", "Hide / S how"))
-        self.pause_play_button_2.setText(_translate("MainWindow", "Pause/Play"))
-        self.zoom_in_2.setText(_translate("MainWindow", "Zoom In"))
-        self.zoom_out_2.setText(_translate("MainWindow", "Zoom Out"))
-        self.speed_label_2.setText(_translate("MainWindow", "Cine Speed"))
-        self.rewind_2.setText(_translate("MainWindow", "Rewind"))
+        self.hide_check_1.setText(_translate("MainWindow", "Hide / Show"))
+        self.pause_play_button_2.setIcon(QIcon("images/pause.ico"))
+        self.zoom_in_2.setIcon(QIcon("images/zoomin.png"))
+        self.zoom_out_2.setIcon(QIcon("images/zoomout.png"))
+        self.speed_label_2.setText(_translate("MainWindow", "Speed"))
+        self.rewind_2.setIcon(QIcon("images/rewind.png"))
         self.plot_box_2.setItemText(0, _translate("MainWindow", "Plot1"))
         self.colour_2.setText(_translate("MainWindow", "Colour"))
         self.shift_2.setText(_translate("MainWindow", "Shift plot"))
@@ -526,12 +547,12 @@ class Ui_MainWindow:
         self.actionsave.setText(_translate("MainWindow", "save"))
         self.actionsave_as.setText(_translate("MainWindow", "save as\'"))
         self.actionReport.setText(_translate("MainWindow", "Report"))
-def main():
+        
+if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)  # Create the application instance
-    MainWindow = QtWidgets.QMainWindow()  # Create the main window
+    app.setStyle('Fusion')
     ui = Ui_MainWindow()  # Create an instance of the UI class
-    ui.setupUi(MainWindow)  # Set up the UI for the main window
-    MainWindow.show()  # Display the main window
+    ui.show()  # Set up the UI for the main window
+   
     sys.exit(app.exec_())  # Run the application event loop
 
-main()
