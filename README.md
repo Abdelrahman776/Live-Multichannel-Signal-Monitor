@@ -8,36 +8,36 @@ This PyQt-powered application serves as a **real-time vital sign monitoring syst
 
 ## Features :-
 
-- **Real-Time Playback:** Seamlessly play and display signals in real-time for immediate insights.
-- **Playback Controls:** Enjoy comprehensive playback controls, including play, pause, and zoom functionalities, enhancing signal examination.
-- **Customization Options:** Personalize signal names and colors to optimize visualization and analysis.
+- **Multi Channel & Multi signals display .**
+- **Real-Time Plotting:** Seamlessly play and display signals in real-time for immediate insights.
+- **Playback Controls:** Enjoy comprehensive playback controls, including play, pause, and zoom functionalities, and navigation.
+- **Customization Options:** Personalize signal legend names and colors to optimize visualization and analysis.
 - **Signal Management:** Effortlessly move signals between viewers and selectively hide them for focused examination.
-- **Statistical Reports:** Generate comprehensive reports with statistical measures for in-depth signal analysis.
 - **Viewer Synchronization:** Link viewers for synchronized playback and simultaneous analysis, ensuring coherence in observations.
-- **Snapshot Capture:** Capture snapshots of signal views for documentation or easy sharing.
 - **Dynamic Speed Control:** Adjust signal playback speed to suit your specific requirements, facilitating precise examination.
+- **Snapshot Capture:** Capture snapshots of signal views for documentation or easy sharing.
+- **Statistical Reports:** Generate comprehensive PDF reports with statistical measures for in-depth signal analysis.
 
 ## Installation
 
 1. Clone the repository
 
 ```sh
-   git clone https://github.com/Abdelrahman776/Live-Multichannel-Signal-Monitor#live-multichannel-signal-monitor
+   git clone https://github.com/Abdelrahman776/Live-Multichannel-Signal-Monitor
 ```
 
 2. Install project dependencies
 
 ```sh
-   pip install typing
-   pip install os
    pip install PyQt5
-   pip install reportlab
-   pip install pandas
-   pip install numpy
    pip install pyqtgraph
+   pip install matplotlib
+   pip install numpy
+   pip install pandas
+   pip install reportlab
 ```
 
-3. Run the application
+1. Run the application
 
 ```sh
    python main.py
