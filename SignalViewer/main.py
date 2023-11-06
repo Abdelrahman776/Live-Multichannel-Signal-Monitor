@@ -19,17 +19,19 @@ class Ui_MainWindow(QMainWindow):
         
         """Initializer."""
         super().__init__()
-        self.resize(1600, 800)
+        self.resize(1920, 1080)
         # setting icon to the window
         self.setWindowIcon(QIcon('images/icon.png'))
         self.centralwidget = QtWidgets.QWidget()
         self.centralwidget.setObjectName("centralwidget")
         self.graph_background = QtWidgets.QGraphicsView(self.centralwidget)
-        self.graph_background.setGeometry(QtCore.QRect(0, 0, 801, 351))
+        self.graph_background.setGeometry(QtCore.QRect(0, 0, 1920, 1080))
+        self.graph_background.setStyleSheet("background-color:#555;")
+        self.setStyleSheet("background-color: #212121;color:#fff;") 
         self.graph_background.setObjectName("graph_background")
         self.tabs = QtWidgets.QTabWidget(self.centralwidget)
         self.tabs.setEnabled(True)
-        self.tabs.setGeometry(QtCore.QRect(0, 350, 801, 241))
+        self.tabs.setGeometry(QtCore.QRect(0, 600, 1920, 450))
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(238, 255, 252))
         brush.setStyle(QtCore.Qt.SolidPattern)
@@ -223,13 +225,13 @@ class Ui_MainWindow(QMainWindow):
         self.xslider_2.setOrientation(QtCore.Qt.Horizontal)
         self.xslider_2.setObjectName("xslider_2")
         self.verticalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(40, 10, 351, 311))
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(40, 0, 351, 311))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.verticalLayout_1 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout_1.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_1.setObjectName("verticalLayout_1")
         self.verticalLayoutWidget_2 = QtWidgets.QWidget(self.centralwidget)
-        self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(440, 10, 351, 311))
+        self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(970, 0, 950, 600))
         self.verticalLayoutWidget_2.setObjectName("verticalLayoutWidget_2")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_2)
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
@@ -239,7 +241,7 @@ class Ui_MainWindow(QMainWindow):
         self.statusbar.setObjectName("statusbar")
         self.setStatusBar(self.statusbar)
         self.menubar = QtWidgets.QMenuBar()
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 818, 26))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 818, 226))
         self.menubar.setObjectName("menubar")
         self.menuFile = QtWidgets.QMenu(self.menubar)
         self.menuFile.setObjectName("menuFile")
@@ -279,17 +281,17 @@ class Ui_MainWindow(QMainWindow):
         self.verticalLayout_2.addWidget(self.canvas_2)
 
         #vertical slider
-        self.yslider_1.setRange(-6,6)
+        self.yslider_1.setRange(-10,10)
         self.yslider_1.setValue(0)
         ##* :) *##
-        self.yslider_2.setRange(-6,6)
+        self.yslider_2.setRange(-10,10)
         self.yslider_2.setValue(0)
 
         #horizontal slider
-        self.xslider_1.setRange(-6,6)
+        self.xslider_1.setRange(-10,10)
         self.xslider_1.setValue(0)
         ##* :) *##
-        self.xslider_2.setRange(-6,6)
+        self.xslider_2.setRange(-10,10)
         self.xslider_2.setValue(0)
 
         #### signals ####

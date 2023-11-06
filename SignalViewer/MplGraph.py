@@ -70,7 +70,7 @@ class MplCanvas(FigureCanvas):
         # is responsible for updating the canvas with [(drawing)] the latest data 
         self.axes.clear()  #  Clears the current plot on the canvas.
         self.axes.grid(True)
-        self.axes.set_facecolor('White')
+        self.axes.set_facecolor('white')
         self.axes.set_ylim(self.y_min, self.y_max) #Sets the y-axis limits of the plot to the values stored in self.y_min and self.y_max.
         self.lst_line.clear()
         for i in range(len(self.lst_ydata)):
