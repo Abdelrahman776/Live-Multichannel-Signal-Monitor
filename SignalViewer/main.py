@@ -377,7 +377,7 @@ class Ui_MainWindow(QMainWindow):
             canvas.pause_or_paly()
             isplayed=canvas.played
             if isplayed:
-                btn.setIcon(QIcon("images/pause.ico"))
+                btn.setIcon(QIcon("images/pause1.png"))
                 isplayed=False
             else:
                 btn.setIcon(QIcon("images/play.ico"))       
@@ -514,7 +514,7 @@ class Ui_MainWindow(QMainWindow):
     def retranslateUi(self):
         _translate = QtCore.QCoreApplication.translate
         self.setWindowTitle(_translate("", "Live-Multichannel-Signal-Monitor"))
-        self.pause_play_button_1.setIcon(QIcon("images/pause.ico"))
+        self.pause_play_button_1.setIcon(QIcon("images/pause1.png"))
         # setText(_translate("", "Pause/Play"))
         self.hide_check_2.setText(_translate("", "Hide / Show"))
         self.zoom_in_1.setIcon(QIcon("images/zoomin.png"))
@@ -530,7 +530,7 @@ class Ui_MainWindow(QMainWindow):
         self.snapshot_1.setText(_translate("MainWindow", "Snapshot"))
         self.tabs.setTabText(self.tabs.indexOf(self.channel_1), _translate("MainWindow", "Channel 1"))
         self.hide_check_1.setText(_translate("MainWindow", "Hide / Show"))
-        self.pause_play_button_2.setIcon(QIcon("images/pause.ico"))
+        self.pause_play_button_2.setIcon(QIcon("images/pause1.png"))
         self.zoom_in_2.setIcon(QIcon("images/zoomin.png"))
         self.zoom_out_2.setIcon(QIcon("images/zoomout.png"))
         self.speed_label_2.setText(_translate("MainWindow", "Speed"))
