@@ -524,7 +524,7 @@ class Ui_MainWindow(object):
         self.rewind_1.setIcon(QtGui.QIcon("icons/icons8-rewind-50.png"))
         self.rewind_1.setIconSize(QtCore.QSize(30,30))
         self.zoom_out_1.setText(_translate("MainWindow", "Zoom Out"))
-        self.zoom_out_1.setText(_translate("MainWindow", "Zoom In"))
+        
         self.zoom_out_1.setIcon(QtGui.QIcon("icons/icons8-zoom-out-50.png"))
         self.zoom_out_1.setIconSize(QtCore.QSize(30,30))
         self.hide_check_1.setText(_translate("MainWindow", "Hide / Show"))
@@ -559,7 +559,7 @@ class Ui_MainWindow(object):
         self.rewind_2.setIcon(QtGui.QIcon("icons/icons8-rewind-50.png"))
         self.rewind_2.setIconSize(QtCore.QSize(30,30))
         self.zoom_out_2.setText(_translate("MainWindow", "Zoom Out"))
-        self.zoom_out_2.setText(_translate("MainWindow", "Zoom In"))
+        
         self.zoom_out_2.setIcon(QtGui.QIcon("icons/icons8-zoom-out-50.png"))
         self.zoom_out_2.setIconSize(QtCore.QSize(30,30))
         self.hide_check_2.setText(_translate("MainWindow", "Hide / Show"))
