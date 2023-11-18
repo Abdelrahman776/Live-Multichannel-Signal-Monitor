@@ -70,7 +70,7 @@ class MplCanvas(FigureCanvas):
         # is responsible for updating the canvas with [(drawing)] the latest data 
         self.axes.clear()  #  Clears the current plot on the canvas.
         self.axes.grid(True)
-        self.axes.set_facecolor('white')
+        self.axes.set_facecolor('#111')
         self.axes.set_ylim(self.y_min, self.y_max) #Sets the y-axis limits of the plot to the values stored in self.y_min and self.y_max.
         self.lst_line.clear()
         for i in range(len(self.lst_ydata)):
@@ -273,10 +273,10 @@ class MplCanvas(FigureCanvas):
         for i in range(len(self.lst_df)):
             statistics_1=[]
             statistics_1.append(str(self.lst_df_names[i]))
-            statistics_1.append(str(self.lst_df[i].iloc[:,1].mean()))
-            statistics_1.append(str(self.lst_df[i].iloc[:,1].std()))
-            statistics_1.append(str(self.lst_df[i].iloc[:,1].max()))
-            statistics_1.append(str(self.lst_df[i].iloc[:,1].min()))
+            statistics_1.append(str(self.lst_ydata[i].mean()))
+            statistics_1.append(str(self.lst_ydata[i].std()))
+            statistics_1.append(str(self.lst_ydata[i].max()))
+            statistics_1.append(str(self.lst_ydata[i].min()))
             statistics.append(statistics_1)
 
         return statistics
