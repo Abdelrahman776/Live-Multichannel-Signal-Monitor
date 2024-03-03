@@ -82,3 +82,4 @@ This PyQt-powered application serves as a **real-time vital sign monitoring syst
 - Linking Viewers :-
 
   Linking the two viewers together for synchronized playback and analysis of the signals, using the controls will enable you to handle the two signals simultaneously.
+  <img src="result snapshot.jpg">
